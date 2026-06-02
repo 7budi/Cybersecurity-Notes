@@ -1,2 +1,2 @@
 # Cybersecurity-Notes
-This is a place where i keep my no
+This repository contains my personal notes, lab write-ups, and resources collected throughout my cybersecurity learning journey.
