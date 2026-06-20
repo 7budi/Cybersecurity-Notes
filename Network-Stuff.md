@@ -10,4 +10,9 @@
 - Media Access Control is our physical address.
 - Anything that is using Network interface have a mac address
 - This mac's are important because they utilize layer 2 or switching and they are how we communicate over switch.
-- The first 3 pairs are identifiers.
+- The first 3 pairs are identifiers and the rest is unique number.
+
+## What is TCP and UDP?
+
+- TCP(Transmission Control Protocol) is a connection oriented protocol.
+- UDP(User Datagram Protocol) is a connection-less protocol. 
