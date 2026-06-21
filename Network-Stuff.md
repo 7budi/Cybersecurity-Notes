@@ -15,4 +15,24 @@
 ## What is TCP and UDP?
 
 - TCP(Transmission Control Protocol) is a connection oriented protocol.
+	- Best suited for high reliability.
+	- It works on 3 way handshake (SYN, SYN ACK, ACK).
+	- EX: Like wibesite (http,https),SSH,FTP(File Transfer Protoco).
 - UDP(User Datagram Protocol) is a connection-less protocol. 
+	- EX: DNS,Streaming
+### Common Ports and Protocols
+- TCP
+	1. FTP(21)
+	2. SSH(22) ->same as telnet but encrypted version. 
+	3. Telnet(23) -> telnet is the ability to login in a machine remotely and it is in clear text. 
+	4. SMTP(25)
+	5. DNS(53) -> is a way to resolve IP addresses to Names.
+	6. HTTP(80)/HTTPS(443)
+	7. POP3(110)
+	8. SMB(139+445) -> file share (SAMBA)
+	9. IMAP(143)
+- UDP
+	1. DNS(53)
+	2. DHCP(67,68)
+	3. TFTP(69)
+	4. SNMP(161)
