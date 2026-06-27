@@ -36,3 +36,11 @@
 	2. DHCP(67,68)
 	3. TFTP(69)
 	4. SNMP(161)
+## OSI Model
+1. Physical : Data cables, cat6 , generally it is something that you plug in.
+2. Data : Switching, MAC Addresses 
+3. Network : IP Addresses , routing
+4. Transport : TCP/UDP
+5. Session : session management 
+6. Presentation : WMV, JPEG, MOV
+7. Application : HTTP , SMTP
