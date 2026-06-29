@@ -1,0 +1,3 @@
+- To display a text , print("hello world").
+- If we are writing a script in python at the beginning write !#/bin/python3.
+- to run the scripte , python3 file name or ./filename.
