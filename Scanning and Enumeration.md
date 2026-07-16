@@ -32,6 +32,7 @@ nmap < scan types> < options> < target>
 - Is an alternative implementation for SMB, which is developed for unix-based os.
 - Samba implements the common internet file system(CIFS) protocol.
 - A "**workgroup**" is a group name that identifies an arbitrary collection of computers and their resources on an SMB network.
+- Samba is based on the common client/server protocol of Server Message Block (SMB).SMB is developed only for Windows, without Samba, other computer platforms would be isolated from Windows machines, even if they were part of the same network.
 
 ## Metasploit
 
