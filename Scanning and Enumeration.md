@@ -28,6 +28,10 @@ nmap < scan types> < options> < target>
 - Server Message Block is a file share , that regulate access to file and directories and other network resources such as printer , router, or interfaces released for the network. 
 - Information exchange between different system processes and also be handled on the SMB protocol.
 - SMB uses TCP protocol, which provide a three-way handshake before a connection is established between the client and server.
+- NETBIOS is an older tarnsport layer which allow windows computers to talk to each other.
+-  Later version of SMB started to use Port 445 on top of TCP stack.
+- You can recursively download the SMB share too.
+	- smbget -R smb://10.66.164.146/anonymous < - Doesn't work try "get filename".
 ### SAMBA
 - Is an alternative implementation for SMB, which is developed for unix-based os.
 - Samba implements the common internet file system(CIFS) protocol.
