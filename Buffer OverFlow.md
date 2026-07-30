@@ -4,3 +4,8 @@
 - stack grows up to lower addresses.
 - ESP: register conatins the memory address to the top of the stack.
 - EBP:register contains the memory address to the bottom of the stack.
+
+## Spiking 
+- Spiking is the first step you take to find a vulnerability.
+- It is a process of probing an application to dicover which command or input are susceptible to buffer overflow.
+- 
