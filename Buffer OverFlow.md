@@ -8,4 +8,5 @@
 ## Spiking 
 - Spiking is the first step you take to find a vulnerability.
 - It is a process of probing an application to dicover which command or input are susceptible to buffer overflow.
-- 
+- generic_send_tcp is a tool used for spiking of buffer overflow to find a vulnerable command.
+	- generic_send_tcp host port spike_script 0 0 
