@@ -17,4 +17,16 @@
 - It is accessible only through the domain controller processes and protocols. 
 
 ## Logical AD Components 
-- 
+## 1. AD DS Schema
+- Define every type of object that can be stored in a directory.
+- enforce rule regarding object creation and configuration. 
+## 2. Domains
+- domain are used to group and manage object in an organization.
+## 3. Trees
+- A domain tree is a hierarchy of domain in AD DS.
+## 4. Forest 
+- A forest is a collection of one or more domain trees.
+## 5. Organizational Units
+- OUs are Active directory containers that can contain users,group,computer and other OUs.
+## 6.Trust
+- Trust provide a mechanism fro users to gain access to resource  in other domain. 
