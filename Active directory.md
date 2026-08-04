@@ -30,3 +30,11 @@
 - OUs are Active directory containers that can contain users,group,computer and other OUs.
 ## 6.Trust
 - Trust provide a mechanism fro users to gain access to resource  in other domain. 
+
+
+## Attacking Active Directory Initial Attack Vectors
+### LLMNR(**Link-Local Multicast Name Resolution**) Poisoning
+#### What is LLMNR
+- Used to identify hosts when DNS fails to do so.
+- It's a network protocol used by computers to resolve hostnames on a local network when DNS isn't available or doesn't have the answer.
+- LLMNR poisoning is an attack where a malicious device on the same local network pretends to be the computer or server another device is trying to find.
