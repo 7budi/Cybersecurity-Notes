@@ -38,3 +38,7 @@
 - Used to identify hosts when DNS fails to do so.
 - It's a network protocol used by computers to resolve hostnames on a local network when DNS isn't available or doesn't have the answer.
 - LLMNR poisoning is an attack where a malicious device on the same local network pretends to be the computer or server another device is trying to find.
+- The best defence is to disable LLMNR and NBT-NS.
+#### What is SMB relay?
+- Instead of cracking hashes gathered with responder, we can instead relay those hashes to specific machines and potentially gain access. 
+- Signing must be disabled on the target and relayed user credential must be admin on machine.  
