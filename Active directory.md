@@ -1,10 +1,15 @@
 ## What is Active directory?
 - It is a directory service developed by microsoft to manage windows domain networks.
-- It stores information related to objects such as computers, users,printers,etc.
+- It stores information related to objects such as computers, users,printers,servers,etc.
 - Authenticates using kerberos tickests.
+- AD is system used by an organization to manage their acomputer,users and access permission form one central place. 
+- Instead of handling every computer and employee separately, Active Directory allows everything to be controlled in a structured and organized way. 
+- At its core, Active Directory answers three basic questions for a company’s network: who are you, which computer are you using, and what are you allowed to access. Every time a user logs in to a system, opens a file, or accesses an application, Active Directory plays a role in deciding whether that action is allowed or denied.
 ## Physical AD Components
 ### 1.Domain controllers
 - A domain controller is a windows server that acts as the central authority in an AD environment.
+- It is a server that store all information about users, computers and security rules.
+- Whenever someone logs in, the DC checks the credentials and decides whether access should be granted. 
 - Its main roles are :
 	- Host a copy of the AD domain services.
 	- Provide Authentication and authorization services.
