@@ -36,12 +36,28 @@
 - Define every type of object that can be stored in a directory.
 - enforce rule regarding object creation and configuration. 
 ## Group Policy Objects (GPOs)
-
 - Group Policy Objects are rules that automatically apply settings to users and computers. These settings control security, software installation, system configuration, and user behavior.
-
 - For example, a company can enforce strong passwords, disable USB storage, or install antivirus software on all computers using GPOs. Once configured, these rules apply automatically.
-
 - This is useful because it ensures consistency and security across the organization. From an attacker’s perspective, GPOs are extremely powerful. If attackers gain control over GPOs, they can deploy malware to every computer, disable security tools, or create backdoor accounts across the entire network.
+
+## Replication and Fault Tolerance 
+- Active Directory uses multiple Domain Controllers to ensure availability. All Domain Controllers replicate data between each other so that changes made on one are reflected across the network.
+- In real life, this is like having multiple copies of a company database stored in different offices. If one office goes down, another can still operate.
+- This feature is useful because it prevents downtime and data loss. However, attackers can abuse replication. If an attacker compromises one Domain Controller, malicious changes can spread automatically to all others, making cleanup difficult and allowing persistence.
+## Delegation and Administrative Control
+- AD allows administrators to delegate specific tasks without giving full control . For example, a helpdesk employee maybe allow to reset password but not modify domain settings.
+## Auditing and Logging
+- Active Directory records login attempts, permission changes, and administrative actions. These logs help organizations detect suspicious activity.
+- This feature is useful for defense and compliance. Attackers often attempt to disable logging or blend in with normal activity to avoid detection after compromising Active Directory.
+## Kerberos Authentication
+- Kerberos is the primary and most important authentication protocol used in Active Directory environments. It is designed to be secure, fast, and scalable.
+- In simple terms, Kerberos works like a ticket system. When a user logs in, they first prove their identity to the Domain Controller. If the credentials are valid, the Domain Controller issues a ticket. This ticket is then used to access different services without repeatedly sending the password.
+- In real life, Kerberos is similar to getting a wristband at an event. Once you get the wristband, you can enter different areas without showing your ID again.
+- Kerberos is useful because passwords are not constantly transmitted over the network. However, attackers target Kerberos heavily. If attackers obtain password hashes or service tickets, they can perform attacks like Kerberoasting. By cracking these tickets offline, attackers can recover service account passwords, which often have high privileges and weak security.
+## NTLM Authentication
+- NTLM is an older authentication protocol that still exists for backward compatibility. It is less secure than Kerberos and relies on challenge-response mechanisms.
+- In NTLM, the password hash is used to prove identity rather than a ticket system. This makes NTLM more vulnerable to attacks.
+- Attackers love NTLM because it enables attacks like pass-the-hash. In these attacks, the attacker does not need the actual password. If they steal the hash, they can authenticate as the user. Many real-world breaches start with NTLM abuse, especially in legacy environments.
 ##  Domains
 - domain are used to group and manage object in an organization.
 ## Trees
@@ -51,7 +67,9 @@
 ## Organizational Units
 - OUs are Active directory containers that can contain users,group,computer and other OUs.
 ## Trust
-- Trust provide a mechanism fro users to gain access to resource  in other domain. 
+- Trust provide a mechanism fro users to gain access to resource  in other domain.
+- Large organizations often have multiple domains that trust each other. Trust relationships allow users in one domain to access resources in another.
+- This is useful for collaboration across departments or subsidiaries. Attackers abuse trust relationships to move from one domain to another, turning a small compromise into a large breach.
 
 
 ## REMINDER NOTES
@@ -67,4 +85,34 @@
 - The best defence is to disable LLMNR and NBT-NS.
 #### What is SMB relay?
 - Instead of cracking hashes gathered with responder, we can instead relay those hashes to specific machines and potentially gain access. 
-- Signing must be disabled on the target and relayed user credential must be admin on machine.  
+- Signing must be disabled on the target and relayed user credential must be admin on machine. 
+- SMB relay do not involve cracking passwords.instead, they abuse trust during authentication.
+---
+## DNS Takeover Attacks 
+- DNS is one of the most trusted services in Active Directory. Almost everything depends on DNS, including authentication and service discovery.
+- DNS takeover attacks occur when attackers gain control over DNS records or DNS servers. This can happen through weak permissions, compromised DNS admins, or misconfigured AD-integrated DNS.
+- Once attackers control DNS, they can redirect users and systems to malicious servers. This allows credential harvesting, malware delivery, and traffic interception.
+- In real life, this is like changing office signboards so employees walk into the wrong rooms without realizing it.
+- DNS takeover is extremely dangerous because it affects the entire domain silently. Attackers can impersonate critical services, capture authentication traffic, and persist without touching endpoints.
+## Kerberoasting Attacks
+- Kerberoasting is one of the most effective Active Directory attacks and works because of how Kerberos authentication is designed.
+- In Kerberos, services use special accounts called service accounts. These accounts have Service Principal Names (SPNs). When a user wants to access a service, Active Directory issues a service ticket encrypted with the service account's password hash.
+- Any authenticated user can request these tickets. Attackers do not need special privileges.
+- Once attackers obtain the ticket, they extract it and crack it offline. If the service account uses a weak password, it can be cracked quickly.
+- In real life, this is like requesting a locked document that uses a weak lock and taking it home to break it quietly.
+- Kerberoasting is effective because service accounts often have high privileges and rarely change passwords. Once cracked, attackers can gain powerful access and move toward domain admin privileges.
+- Tools like Mimikatz are used to extract tickets from memory or request them directly.
+
+## Pass-the-Hash Attacks
+- Pass-the-hash attacks allow attackers to authenticate without knowing the actual password.
+- Windows stores password hashes in memory for authentication purposes. If attackers extract these hashes using tools like Mimikatz, they can reuse them to authenticate to other systems.
+- In real life, this is like copying a fingerprint instead of knowing the PIN code.
+- Pass-the-hash is effective because many systems still rely on NTLM authentication. As long as the hash is valid, the system accepts it.
+- Attackers use pass-the-hash to move laterally across the network, escalate privileges, and maintain persistence.
+
+## Token Impersonation Attacks
+- Windows uses security tokens to represent user sessions. These tokens define what actions a user can perform.
+- If an attacker gains access to a system and finds tokens belonging to higher-privileged users, they can impersonate those tokens.
+- In real life, this is like stealing someone's access badge after they log in and using it to enter restricted areas.
+- Token impersonation often occurs on compromised servers where administrators log in frequently. Attackers wait for a privileged user to log in, then steal the token.
+- This allows attackers to execute commands as that user without knowing their password.
