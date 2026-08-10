@@ -16,25 +16,46 @@
 	- Replicate updates to other domain controllers in the domain and forest.
 	- Allow administrative access to manage user accounts and network resources. 
 ### 2.AD DS Data Store
-- The AD DS data store contains the database files and processes that store and manage directory information for users, services and applications.
+- The AD DS data store contains the database files and processes that store and manage directory information for users, groups,permissions, services and applications.
+- When someone logs in to company computer , ADDS checks the username and password and decides whether the login in is allowed.
+- **AD DS (Active Directory Domain Services)** = the **service/role** that provides Active Directory functionality.
+- **DC (Domain Controller)** = a **server/computer running AD DS**.
 - It consists of the Ntds.dit file.
 - It is stored by default in the %SystemRoot%\NTDS folder on all domain controllers.
 - It is accessible only through the domain controller processes and protocols. 
 
 ## Logical AD Components 
-## 1. AD DS Schema
+
+## AD CS (Active Directory Certificate Services)
+- AD CS is used to issue digital certificate. These certificates proves identity and  allow secure communication between system , users and services. Certificates are used for secure logins, encrypted communication, and device authentication.
+## AD FS (Active Directory Federation Services)
+- Active Directory Federation Services allows users to log in once and access multiple applications, including cloud services, without entering their password again. This is commonly used for single sign-on with services like Office 365, Azure, or third-party applications.
+## AD RMS (Active Directory Rights Management Services)
+- Active Directory Rights Management Services is used to protect sensitive documents and emails. It controls who can open, copy, print, or forward a file, even after it leaves the company network.
+## AD DS Schema
 - Define every type of object that can be stored in a directory.
 - enforce rule regarding object creation and configuration. 
-## 2. Domains
+## Group Policy Objects (GPOs)
+
+- Group Policy Objects are rules that automatically apply settings to users and computers. These settings control security, software installation, system configuration, and user behavior.
+
+- For example, a company can enforce strong passwords, disable USB storage, or install antivirus software on all computers using GPOs. Once configured, these rules apply automatically.
+
+- This is useful because it ensures consistency and security across the organization. From an attacker’s perspective, GPOs are extremely powerful. If attackers gain control over GPOs, they can deploy malware to every computer, disable security tools, or create backdoor accounts across the entire network.
+##  Domains
 - domain are used to group and manage object in an organization.
-## 3. Trees
+## Trees
 - A domain tree is a hierarchy of domain in AD DS.
-## 4. Forest 
+## Forest 
 - A forest is a collection of one or more domain trees.
-## 5. Organizational Units
+## Organizational Units
 - OUs are Active directory containers that can contain users,group,computer and other OUs.
-## 6.Trust
+## Trust
 - Trust provide a mechanism fro users to gain access to resource  in other domain. 
+
+
+## REMINDER NOTES
+- authentication is the process of proving who you are, Authorization is the process of deciding what you are allowed to do. AD handles both. when a user enter username and password , AD verifies their identity. once verified, it check's the user's permissions and allows or denies access to resources  
 
 
 ## Attacking Active Directory Initial Attack Vectors
