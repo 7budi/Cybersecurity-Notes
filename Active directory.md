@@ -39,7 +39,6 @@
 - Group Policy Objects are rules that automatically apply settings to users and computers. These settings control security, software installation, system configuration, and user behavior.
 - For example, a company can enforce strong passwords, disable USB storage, or install antivirus software on all computers using GPOs. Once configured, these rules apply automatically.
 - This is useful because it ensures consistency and security across the organization. From an attacker’s perspective, GPOs are extremely powerful. If attackers gain control over GPOs, they can deploy malware to every computer, disable security tools, or create backdoor accounts across the entire network.
-
 ## Replication and Fault Tolerance 
 - Active Directory uses multiple Domain Controllers to ensure availability. All Domain Controllers replicate data between each other so that changes made on one are reflected across the network.
 - In real life, this is like having multiple copies of a company database stored in different offices. If one office goes down, another can still operate.
@@ -71,10 +70,8 @@
 - Large organizations often have multiple domains that trust each other. Trust relationships allow users in one domain to access resources in another.
 - This is useful for collaboration across departments or subsidiaries. Attackers abuse trust relationships to move from one domain to another, turning a small compromise into a large breach.
 
-
 ## REMINDER NOTES
 - authentication is the process of proving who you are, Authorization is the process of deciding what you are allowed to do. AD handles both. when a user enter username and password , AD verifies their identity. once verified, it check's the user's permissions and allows or denies access to resources  
-
 
 ## Attacking Active Directory Initial Attack Vectors
 ### LLMNR(**Link-Local Multicast Name Resolution**) Poisoning
@@ -87,6 +84,7 @@
 - Instead of cracking hashes gathered with responder, we can instead relay those hashes to specific machines and potentially gain access. 
 - Signing must be disabled on the target and relayed user credential must be admin on machine. 
 - SMB relay do not involve cracking passwords.instead, they abuse trust during authentication.
+- If you see "Message siging enabled but **not required** " then it means its vulnerable to smb relay.
 ---
 ## DNS Takeover Attacks 
 - DNS is one of the most trusted services in Active Directory. Almost everything depends on DNS, including authentication and service discovery.
