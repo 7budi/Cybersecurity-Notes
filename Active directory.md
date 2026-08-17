@@ -45,6 +45,7 @@
 - This feature is useful because it prevents downtime and data loss. However, attackers can abuse replication. If an attacker compromises one Domain Controller, malicious changes can spread automatically to all others, making cleanup difficult and allowing persistence.
 ## Delegation and Administrative Control
 - AD allows administrators to delegate specific tasks without giving full control . For example, a helpdesk employee maybe allow to reset password but not modify domain settings.
+- **Delegation** allows you to grant users specific privileges to perform advanced tasks on OUs without needing a Domain Administrator to step in.
 ## Auditing and Logging
 - Active Directory records login attempts, permission changes, and administrative actions. These logs help organizations detect suspicious activity.
 - This feature is useful for defense and compliance. Attackers often attempt to disable logging or blend in with normal activity to avoid detection after compromising Active Directory.
