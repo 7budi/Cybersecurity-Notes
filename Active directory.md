@@ -115,3 +115,7 @@
 - In real life, this is like stealing someone's access badge after they log in and using it to enter restricted areas.
 - Token impersonation often occurs on compromised servers where administrators log in frequently. Attackers wait for a privileged user to log in, then steal the token.
 - This allows attackers to execute commands as that user without knowing their password.
+
+## Attcaking AD Post-Compromise Attack
+### Pass the Password/Pass the hash
+- if we crack a password and/or dump the SAM hash, we can leverage both for lateral movement in network.
